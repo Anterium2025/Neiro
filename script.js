@@ -3,8 +3,8 @@ document.getElementById('generate').onclick = async () => {
     const resultDiv = document.getElementById('result');
     
     // Параметры API (замените YOUR_API_KEY на ваш ключ)
-    const apiKey = 'X4dC1b8jxu6ae3Gv9V3yf6a0QwwKW';
-    const apiUrl = 'https://app.air.fail/images/flux';
+    const apiKey = 'sk-X4dC1b8jxu6ae3Gv9V3yf6a0QwwKW';
+    const apiUrl = 'https://api.air.fail/public/me';
 
     try {
         const response = await fetch(apiUrl, {
