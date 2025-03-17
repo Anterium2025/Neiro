@@ -1,102 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Image Generator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-        h1 {
-            margin-top: 20px;
-        }
-        #prompt {
-            width: 80%;
-            padding: 10px;
-            margin: 20px auto;
-            font-size: 16px;
-        }
-        #generateBtn {
-            padding: 10px 20px;
-            font-size: 18px;
-            background-color: #004d99;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        #generateBtn:hover {
-            background-color: #003366;
-        }
-        #imageContainer {
-            margin-top: 20px;
-        }
-        img {
-            max-width: 90%;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-        }
-        #loading {
-            display: none;
-            font-size: 18px;
-            color: #555;
-        }
-    </style>
+    <title>Генератор изображений ИИ</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>AI Image Generator</h1>
-    <p>Введите описание изображения:</p>
-    <input type="text" id="prompt" placeholder="Например, 'Киберпанковый город с неоновыми огнями'" />
-    <button id="generateBtn">Сгенерировать</button>
-    <p id="loading">Генерация изображения, пожалуйста, подождите...</p>
-    <div id="imageContainer"></div>
-
-    <script>
-        const generateBtn = document.getElementById("generateBtn");
-        const promptInput = document.getElementById("prompt");
-        const loadingText = document.getElementById("loading");
-        const imageContainer = document.getElementById("imageContainer");
-
-        generateBtn.addEventListener("click", async () => {
-            const prompt = promptInput.value.trim();
-            if (!prompt) {
-                alert("Пожалуйста, введите описание изображения.");
-                return;
-            }
-
-            loadingText.style.display = "block";
-            imageContainer.innerHTML = ""; // Очистить контейнер
-
-            try {
-                const response = await fetch("/generate", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ prompt })
-                });
-
-                if (!response.ok) {
-                    throw new Error("Ошибка генерации изображения.");
-                }
-
-                const blob = await response.blob();
-                const imgUrl = URL.createObjectURL(blob);
-
-                const img = document.createElement("img");
-                img.src = imgUrl;
-                img.alt = prompt;
-                imageContainer.appendChild(img);
-            } catch (error) {
-                alert("Произошла ошибка: " + error.message);
-            } finally {
-                loadingText.style.display = "none";
-            }
-        });
-    </script>
+    <h1>Генератор изображений ИИ</h1>
+    <input type="text" id="input" placeholder="Введите описание" required>
+    <button id="generate">Сгенерировать</button>
+    <div id="result"></div>
+    
+    <script src="script.js"></script>
 </body>
 </html>
